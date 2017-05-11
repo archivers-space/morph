@@ -33,9 +33,25 @@ Docker images:
 
 ### To Install
 
+Using a Ruby Environment manager such as [rbenv](https://github.com/rbenv/rbenv) is recommended to manage Ruby versions. The requirement version is 2.3.1.
+
 Running this on OSX? Read the [OSX instructions](#installing-docker-on-osx) below BEFORE doing any of this.
+Some additional issues with OSX system tools (in particular readline and openssl) may arise when trying to install Ruby 2.3.1 using rbenv. The workaround is to specify to rbenv to use the versions from homebrew via:
+
+    RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"--with-openssl-dir="$(brew --prefix openssl)" rbenv install 2.3.1
+
+To install via bundler:
 
     bundle install
+
+If bundle install fails on OSX to build package mysql2, use the following flags to direct the compiler to use the specified version of openssl:
+
+    bundle config build.mysql2 --with-ldflags=-L/usr/local/opt/openssl/lib --with-cppflags=-I/usr/local/opt/openssl/include
+
+If bundler install fails on nokogiri, try troubleshooting [with these steps](http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x)
+
+
+*Configure db*
     cp config/database.yml.example config/database.yml
     cp env-example .env
 
