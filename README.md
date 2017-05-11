@@ -51,7 +51,8 @@ If bundle install fails on OSX to build package mysql2, use the following flags 
 If bundler install fails on nokogiri, try troubleshooting [with these steps](http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x)
 
 
-*Configure db*
+### Configure db
+
     cp config/database.yml.example config/database.yml
     cp env-example .env
 
